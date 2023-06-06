@@ -4,7 +4,8 @@
 #include "mapa.h"
 #include "player.h"
 
-int main() {
+int main()
+{
     initscr();
     noecho();
     curs_set(0);
@@ -18,10 +19,12 @@ int main() {
     generateChunks();
     generatePlayerPosition();
 
-    map[player.y][player.x].filler = '@';
+    map[player.y][player.x].filler = PLAYER_CHAR;
 
-    for (int y = 0; y < MAP_HEIGHT; y++) {
-        for (int x = 0; x < MAP_WIDTH; x++) {
+    for (int y = 0; y < MAP_HEIGHT; y++)
+    {
+        for (int x = 0; x < MAP_WIDTH; x++)
+        {
             mvwprintw(window, y, x, "%c", map[y][x].filler);
         }
     }
@@ -30,36 +33,41 @@ int main() {
     wrefresh(window);
 
     int ch;
-    while ((ch = getch()) != 'q') {
-        map[player.y][player.x].filler = '.';
+    while ((ch = getch()) != 'q')
+    {
+        map[player.y][player.x].filler = FLOOR;
 
         int new_player_x = player.x;
         int new_player_y = player.y;
 
-        switch (ch) {
-            case KEY_UP:
-                new_player_y = player.y - 1;
-                break;
-            case KEY_DOWN:
-                new_player_y = player.y + 1;
-                break;
-            case KEY_LEFT:
-                new_player_x = player.x - 1;
-                break;
-            case KEY_RIGHT:
-                new_player_x = player.x + 1;
-                break;
+        switch (ch)
+        {
+        case KEY_UP:
+            new_player_y = player.y - 1;
+            break;
+        case KEY_DOWN:
+            new_player_y = player.y + 1;
+            break;
+        case KEY_LEFT:
+            new_player_x = player.x - 1;
+            break;
+        case KEY_RIGHT:
+            new_player_x = player.x + 1;
+            break;
         }
 
-        if (map[new_player_y][new_player_x].filler != '#') {
+        if (map[new_player_y][new_player_x].filler != WALL)
+        {
             player.x = new_player_x;
             player.y = new_player_y;
         }
 
-        map[player.y][player.x].filler = '@';
+        map[player.y][player.x].filler = PLAYER_CHAR;
 
-        for (int y = 0; y < MAP_HEIGHT; y++) {
-            for (int x = 0; x < MAP_WIDTH; x++) {
+        for (int y = 0; y < MAP_HEIGHT; y++)
+        {
+            for (int x = 0; x < MAP_WIDTH; x++)
+            {
                 mvwprintw(window, y, x, "%c", map[y][x].filler);
             }
         }
