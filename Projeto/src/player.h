@@ -6,6 +6,6 @@ struct Player {
     int y;
 };
 
-struct Player player;
+extern struct Player player;
 
 #endif
