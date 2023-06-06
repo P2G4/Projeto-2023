@@ -30,18 +30,13 @@ void generateChunks()
 {
     srand(time(NULL));
 
-    int player_x = player.x;
-    int player_y = player.y;
+    int validExitRangeX = MAP_WIDTH - 2 * CHUNK_SIZE - 3;
+    int validExitRangeY = MAP_HEIGHT - 2 * CHUNK_SIZE - 3;
 
     for (int i = 0; i < NUM_CHUNKS; i++)
     {
-        int chunkX, chunkY;
-
-        do
-        {
-            chunkX = rand() % (MAP_WIDTH - CHUNK_SIZE - 5) + 3;
-            chunkY = rand() % (MAP_HEIGHT - CHUNK_SIZE - 5) + 3;
-        } while (abs(chunkX - player_x) + abs(chunkY - player_y) < 10);
+        int chunkX = rand() % (validExitRangeX - 3) + CHUNK_SIZE + 2;
+        int chunkY = rand() % (validExitRangeY - 3) + CHUNK_SIZE + 2;
 
         for (int y = chunkY; y < chunkY + CHUNK_SIZE; y++)
         {
@@ -56,9 +51,9 @@ void generateChunks()
 
     do
     {
-        exit_x = rand() % (MAP_WIDTH - 2) + 1;
-        exit_y = rand() % (MAP_HEIGHT - 2) + 1;
-    } while (abs(exit_x - player_x) + abs(exit_y - player_y) < 10);
+        exit_x = rand() % (validExitRangeX - 1) + CHUNK_SIZE + 1;
+        exit_y = rand() % (validExitRangeY - 1) + CHUNK_SIZE + 1;
+    } while (map[exit_y][exit_x].filler != FLOOR);
 
     map[exit_y][exit_x].filler = EXIT_CHAR;
 }
