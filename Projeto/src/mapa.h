@@ -17,5 +17,6 @@ extern struct map map[MAP_HEIGHT][MAP_WIDTH];
 
 void generateMap();
 void generateChunks();
+void generatePlayerPosition();
 
 #endif
