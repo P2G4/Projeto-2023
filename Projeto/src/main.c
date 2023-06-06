@@ -56,7 +56,13 @@ int main()
             break;
         }
 
-        if (map[new_player_y][new_player_x].filler != WALL)
+        if (map[new_player_y][new_player_x].filler == EXIT_CHAR)
+        {
+            generateMap();
+            generateChunks();
+            generatePlayerPosition();
+        }
+        else if (map[new_player_y][new_player_x].filler != WALL)
         {
             player.x = new_player_x;
             player.y = new_player_y;
