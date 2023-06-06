@@ -16,6 +16,7 @@ int main() {
 
     generateMap();
     generateChunks();
+    generatePlayerPosition();
 
     map[player.y][player.x].filler = '@';
 
