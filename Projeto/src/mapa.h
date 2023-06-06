@@ -5,11 +5,16 @@
 #define MAP_WIDTH 150
 #define NUM_CHUNKS 30
 #define CHUNK_SIZE 6
+#define PLAYER_CHAR '@'
+#define WALL '#'
+#define FLOOR '.'
+#define EXIT_CHAR '>'
 
 #include <stdlib.h>
 #include <time.h>
 
-struct map {
+struct map
+{
     char filler;
 };
 
