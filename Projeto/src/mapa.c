@@ -1,6 +1,8 @@
 #include "mapa.h"
+#include "player.h"
 
 struct map map[MAP_HEIGHT][MAP_WIDTH];
+struct Player player;
 
 void generateMap()
 {
@@ -36,5 +38,14 @@ void generateChunks() {
                 map[y][x].filler = '#';
             }
         }
+    }
+}
+
+void generatePlayerPosition() {
+    srand(time(NULL));
+
+    while (map[player.y][player.x].filler == '#') {
+        player.x = rand() % (MAP_WIDTH - 2) + 1;
+        player.y = rand() % (MAP_HEIGHT - 2) + 1;
     }
 }
