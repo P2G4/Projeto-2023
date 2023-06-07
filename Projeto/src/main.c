@@ -20,6 +20,7 @@ int main()
     generatePlayerPosition();
 
     map[player.y][player.x].filler = PLAYER_CHAR;
+    calculateFOV();
 
     for (int y = 0; y < MAP_HEIGHT; y++)
     {
@@ -31,6 +32,7 @@ int main()
 
     refresh();
     wrefresh(window);
+    calculateFOV();
 
     int ch;
     while ((ch = getch()) != 'q')
@@ -69,12 +71,20 @@ int main()
         }
 
         map[player.y][player.x].filler = PLAYER_CHAR;
+        calculateFOV();
 
         for (int y = 0; y < MAP_HEIGHT; y++)
         {
             for (int x = 0; x < MAP_WIDTH; x++)
             {
-                mvwprintw(window, y, x, "%c", map[y][x].filler);
+                if (map[y][x].isVisible)
+                {
+                    mvwprintw(window, y, x, "%c", map[y][x].filler);
+                }
+                else
+                {
+                    mvwprintw(window, y, x, " ");
+                }
             }
         }
 

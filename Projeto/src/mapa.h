@@ -9,13 +9,17 @@
 #define WALL '#'
 #define FLOOR '.'
 #define EXIT_CHAR '>'
+#define FOV_RADIUS 8
 
 #include <stdlib.h>
 #include <time.h>
+#include <stdbool.h>
+#include <math.h>
 
 struct map
 {
     char filler;
+    bool isVisible;
 };
 
 extern struct map map[MAP_HEIGHT][MAP_WIDTH];
@@ -23,5 +27,6 @@ extern struct map map[MAP_HEIGHT][MAP_WIDTH];
 void generateMap();
 void generateChunks();
 void generatePlayerPosition();
+void calculateFOV();
 
 #endif
