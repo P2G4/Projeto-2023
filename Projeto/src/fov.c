@@ -1,9 +1,9 @@
-#include "mapa.h"
-#include "player.h"
+#include "./include/rogue.h"
 
-void calculateFOV()
-{
-    for (int y = 0; y < MAP_HEIGHT; y++)
+void calculateFOV() {
+
+
+    for (int y = 0; y < MAP_HEIGHT - 1; y++)
     {
         for (int x = 0; x < MAP_WIDTH; x++)
         {
@@ -39,6 +39,8 @@ void calculateFOV()
             {
                 map[y][x].isVisible = false;
             }
+            map[player.y][player.x].isVisible = true;
         }
     }
 }
+

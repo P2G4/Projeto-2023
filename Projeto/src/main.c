@@ -1,8 +1,7 @@
 #include <ncurses.h>
 #include <stdlib.h>
 #include <time.h>
-#include "mapa.h"
-#include "player.h"
+#include "./include/rogue.h"
 
 int main()
 {
@@ -35,6 +34,7 @@ int main()
     calculateFOV();
 
     int ch;
+
     while ((ch = getch()) != 'q')
     {
         map[player.y][player.x].filler = FLOOR;
@@ -72,6 +72,7 @@ int main()
 
         map[player.y][player.x].filler = PLAYER_CHAR;
         calculateFOV();
+
 
         for (int y = 0; y < MAP_HEIGHT; y++)
         {
